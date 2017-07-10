@@ -9,14 +9,6 @@ variable "machine_count" {
     default = 2
 }
 
-# variable "domain" {
-#     type = "string"
-# }
-
-# variable "subdomain" {
-#     type = "string"
-# }
-
 resource "triton_machine" "app" {
     count = "${var.machine_count}"
 
@@ -31,18 +23,6 @@ resource "triton_machine" "app" {
         triton.cns.services = "hello-world"
     }
 }
-
-# resource "dnsimple_record" "app" {
-#     count = "${var.machine_count}"
-
-#     domain = "${var.domain}"
-#     name = "${var.subdomain}"
-
-#     type = "A"
-#     ttl = "3600"
-
-#     value = "${triton_machine.app.*.primaryip[count.index]}"
-# }
 
 resource "triton_firewall_rule" "www" {
     rule = "FROM any TO tag Role = www ALLOW tcp PORT 80"
