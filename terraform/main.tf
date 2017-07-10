@@ -2,7 +2,7 @@ provider "triton" {}
 
 variable "image_id" {
     type = "string"
-    default = "37486be0-9e6e-444d-b71d-69fa3088a053"
+    default = "58102f9b-1608-41dc-b69f-bd3f6177ef0b"
 }
 
 variable "machine_count" {
