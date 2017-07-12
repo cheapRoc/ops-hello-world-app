@@ -23,4 +23,4 @@ dpkg --install /tmp/${PACKAGE}
   -Dcatalina.base=/var/lib/tomcat8 \
   -Dcatalina.home=/usr/share/tomcat8 \
   -Djava.io.tmpdir=/tmp/tomcat8-tomcat8-tmp \
-  org.apache.catalina.startup.Bootstrap run
+  org.apache.catalina.startup.Bootstrap start
