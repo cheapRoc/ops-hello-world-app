@@ -21,8 +21,8 @@
 
         ssh_username: "root",
 
-        image_name: "hello-world-app",
-        image_version: "1.0.1",
+        image_name: "hello-world-nomad",
+        image_version: "1.0.0",
     }],
     provisioners: [
     {
