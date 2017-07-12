@@ -15,7 +15,7 @@
         triton_account: "{{ user `triton_account` }}",
         triton_key_id: "{{ user `triton_key_id` }}",
 
-        source_machine_name: "image-builder",
+        source_machine_name: "nomad-builder",
         source_machine_package: "g4-highcpu-1G",
         source_machine_image: "{{ user `source_image` }}",
 
@@ -27,8 +27,8 @@
     provisioners: [
     {
         type: "file",
-        source: "files/helloworld_2.0_all.deb",
-        destination: "/tmp/helloworld_2.0_all.deb",
+        source: "files/run-tomcat.sh",
+        destination: "/tmp/run-tomcat.sh",
     },
     {
         type: "file",
@@ -39,6 +39,7 @@
         type: "shell",
         scripts: [
             "scripts/update_host.sh",
+            "scripts/install_nomad.sh",
             "scripts/install_app.sh",
         ],
     }]
