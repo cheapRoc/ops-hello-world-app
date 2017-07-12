@@ -18,10 +18,10 @@ mv nomad /usr/local/bin/nomad
 # Move nomad systemd and configs into place
 mkdir -p /etc/nomad /opt/nomad
 mv /tmp/config.hcl /etc/nomad/
-mv /tmp/nomad.service /etc/systemd/system/
+mv /tmp/nomad.service /lib/systemd/system/
 sed -i "s/\$\$HOSTNAME/$(/bin/hostname)/g" /etc/nomad/config.hcl
 
 # Run systemd unit for nomad
 systemctl daemon-reload
-systemctl nomad enable
-systemctl nomad start
+systemctl enable nomad
+systemctl start nomad
