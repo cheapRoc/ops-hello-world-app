@@ -1,0 +1,45 @@
+{
+    variables: {
+        triton_account: "{{ env `SDC_ACCOUNT` }}",
+        triton_key_id: "{{ env `SDC_KEY_ID` }}",
+        triton_url: "{{ env `SDC_URL` }}",
+
+        // Ubuntu 16.04 LX
+        source_image: "7b5981c4-1889-11e7-b4c5-3f3bdfc9b88b",
+    },
+    builders: [
+    {
+        type: "triton",
+
+        triton_url: "{{ user `triton_url` }}",
+        triton_account: "{{ user `triton_account` }}",
+        triton_key_id: "{{ user `triton_key_id` }}",
+
+        source_machine_name: "image-builder",
+        source_machine_package: "g4-highcpu-1G",
+        source_machine_image: "{{ user `source_image` }}",
+
+        ssh_username: "root",
+
+        image_name: "hello-world-app",
+        image_version: "1.0.1",
+    }],
+    provisioners: [
+    {
+        type: "file",
+        source: "files/helloworld_2.0_all.deb",
+        destination: "/tmp/helloworld_2.0_all.deb",
+    },
+    {
+        type: "file",
+        source: "files/tomcat",
+        destination: "/tmp/tomcat",
+    },
+    {
+        type: "shell",
+        scripts: [
+            "scripts/update_host.sh",
+            "scripts/install_app.sh",
+        ],
+    }]
+}
