@@ -36,6 +36,16 @@
         destination: "/tmp/tomcat",
     },
     {
+        type: "file",
+        source: "files/nomad.service",
+        destination: "/tmp/nomad.service",
+    },
+    {
+        type: "file",
+        source: "files/config.hcl",
+        destination: "/tmp/config.hcl",
+    },
+    {
         type: "shell",
         execute_command: "sudo -S sh -c '/usr/bin/env {{ .Vars }} {{ .Path }}'",
         scripts: [

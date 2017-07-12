@@ -14,3 +14,14 @@ curl -o /tmp/nomad.zip https://releases.hashicorp.com/nomad/0.6.0-rc1/nomad_0.6.
 # Unzip archive and install
 unzip /tmp/nomad.zip
 mv nomad /usr/local/bin/nomad
+
+# Move nomad systemd and configs into place
+mkdir -p /etc/nomad /opt/nomad
+mv /tmp/config.hcl /etc/nomad/
+mv /tmp/nomad.service /etc/systemd/system/
+sed -i "s/\$\$HOSTNAME/$(/bin/hostname)/g" /etc/nomad/config.hcl
+
+# Run systemd unit for nomad
+systemctl daemon-reload
+systemctl nomad enable
+systemctl nomad start
