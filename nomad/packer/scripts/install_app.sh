@@ -26,4 +26,7 @@ mv /tmp/tomcat /etc/nginx/sites-available/tomcat
 ln -s /etc/nginx/sites-available/tomcat /etc/nginx/sites-enabled/tomcat
 
 # Nomad will supervise the tomcat/java process
-service tomcat8 stop
+systemctl disable tomcat8
+
+# Move tomcat bootstrap script into place for Nomad
+mv /tmp/run-tomcat.sh /usr/local/sbin
